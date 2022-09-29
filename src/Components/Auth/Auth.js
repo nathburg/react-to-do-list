@@ -1,13 +1,17 @@
 import { useState } from 'react';
-import { NavLink, useParams } from 'react-router-dom';
-import { authUser } from '../../services/auth';
+import { NavLink, Redirect, useParams } from 'react-router-dom';
+import { authUser, getUser } from '../../services/auth';
 import './Auth.css';
 
 export default function Auth() {
   const { authType } = useParams();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [sentInfo, setSentInfo] = useState(false);
 
+  if (getUser()) {
+    return <Redirect to='/' />;
+  }
 
   return (
     <div>
@@ -23,9 +27,8 @@ export default function Auth() {
           <input onChange={e => setPassword(e.target.value)} />
         </label>
         <button onClick={async () => {
-          const resp = await authUser(email, password, authType);
-          console.log(resp);
-          console.log(authType);
+          await authUser(email, password, authType);
+          setSentInfo(true);
         }}>Enter
         </button>
       </div>
