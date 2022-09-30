@@ -1,11 +1,12 @@
 import { Redirect } from 'react-router-dom';
-import { getUser } from '../../services/auth';
-import Auth from '../Auth/Auth';
-
+import { UserContext } from '../../context/UserContext';
+import { useContext } from 'react';
 import './Main.css';
 
 export default function Main() {
-  if (!getUser()) {
+  const { user } = useContext(UserContext);
+  
+  if (!user) {
     return <Redirect to='/auth/sign-up' />;
   }
   return (
