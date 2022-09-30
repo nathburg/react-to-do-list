@@ -11,4 +11,8 @@ export function checkError({ data, error }) {
   return data;
 }
 
+export async function insertToDoItem(description) {
+  const resp = await client.from('to-do').insert([{ 'description': description }]);
+  return checkError(resp);
+}
 
