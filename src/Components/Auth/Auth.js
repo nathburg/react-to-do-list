@@ -1,5 +1,5 @@
 import { useContext, useState } from 'react';
-import { NavLink, Redirect, useParams } from 'react-router-dom';
+import { Redirect, useParams } from 'react-router-dom';
 import { UserContext } from '../../context/UserContext';
 import { authUser } from '../../services/auth';
 import './Auth.css';
@@ -16,10 +16,6 @@ export default function Auth() {
 
   return (
     <div>
-      <div className='nav-links'>
-        <NavLink to='/auth/sign-in'>Sign In</NavLink>
-        <NavLink to='/auth/sign-up'>Sign Up</NavLink> 
-      </div>
       <div className='input-container'>
         <label>Email
           <input onChange={e => setEmail(e.target.value)} />

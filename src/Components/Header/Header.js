@@ -1,4 +1,5 @@
 import { useContext } from 'react';
+import { NavLink } from 'react-router-dom';
 import { UserContext } from '../../context/UserContext';
 import { signOut } from '../../services/auth';
 import './Header.css';
@@ -18,6 +19,12 @@ export default function Header() {
           setUser(null);
         }}>Log Out</a>                 
       </div>}
-    </div>    
+      {!user &&
+        <div className='nav-links'>
+          <NavLink to='/auth/sign-in'>Sign In</NavLink>
+          <NavLink to='/auth/sign-up'>Sign Up</NavLink> 
+        </div>} 
+    </div>
+          
   );
 }  

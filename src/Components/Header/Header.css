@@ -13,3 +13,8 @@
 a {
   cursor: pointer;
 }
+
+.nav-links {
+  display: flex;
+  flex-direction: column;
+}
