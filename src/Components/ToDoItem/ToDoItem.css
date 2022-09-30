@@ -2,3 +2,7 @@
   display: flex;
   max-width: max-content;
 }
+
+.checkbox {
+  cursor: pointer;
+}

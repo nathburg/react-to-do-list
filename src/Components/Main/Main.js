@@ -26,7 +26,7 @@ export default function Main() {
         setSubmit(!submit);
       }}>Enter</button>
       {toDoList.map((item) =>
-        <ToDoItem key={item.id} description={item.description} />
+        <ToDoItem key={item.id} {...item} submit={submit} setSubmit={setSubmit} />
       )}
     </div>
   );
