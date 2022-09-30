@@ -6,3 +6,7 @@
 .checkbox {
   cursor: pointer;
 }
+
+.delete {
+  cursor: pointer;
+}
