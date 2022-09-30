@@ -16,3 +16,8 @@ export async function insertToDoItem(description) {
   return checkError(resp);
 }
 
+export async function getToDoItems() {
+  const resp = await client.from('to-do').select('*');
+  return checkError(resp);
+}
+

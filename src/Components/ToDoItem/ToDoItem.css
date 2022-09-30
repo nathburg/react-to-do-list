@@ -1,0 +1,4 @@
+.to-do-item {
+  display: flex;
+  max-width: max-content;
+}
