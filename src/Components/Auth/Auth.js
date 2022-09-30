@@ -1,15 +1,16 @@
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 import { NavLink, Redirect, useParams } from 'react-router-dom';
-import { authUser, getUser } from '../../services/auth';
+import { UserContext } from '../../context/UserContext';
+import { authUser } from '../../services/auth';
 import './Auth.css';
 
 export default function Auth() {
   const { authType } = useParams();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [sentInfo, setSentInfo] = useState(false);
+  const { user, setUser } = useContext(UserContext);
 
-  if (getUser()) {
+  if (user) {
     return <Redirect to='/' />;
   }
 
@@ -27,8 +28,7 @@ export default function Auth() {
           <input onChange={e => setPassword(e.target.value)} />
         </label>
         <button onClick={async () => {
-          await authUser(email, password, authType);
-          setSentInfo(true);
+          setUser(await authUser(email, password, authType));          
         }}>Enter
         </button>
       </div>
