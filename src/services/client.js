@@ -23,8 +23,6 @@ export async function getToDoItems() {
 
 export async function deleteToDoItem(id) {
   const resp = await client.from('to-do').delete().match({ 'id': id });
-  console.log(id);
-  console.log(resp);
   return resp;
 }
 

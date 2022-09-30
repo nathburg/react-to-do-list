@@ -2,7 +2,7 @@ import { Redirect } from 'react-router-dom';
 import { UserContext } from '../../context/UserContext';
 import { useContext, useState } from 'react';
 import './Main.css';
-import { getToDoItems, insertToDoItem } from '../../services/client';
+import { insertToDoItem } from '../../services/client';
 import ToDoItem from '../ToDoItem/ToDoItem';
 import { useToDoItems } from '../../hooks/useToDoList';
 
@@ -10,7 +10,7 @@ export default function Main() {
   const { user } = useContext(UserContext);
   const [toDoItem, setToDoItem] = useState('');
   const [submit, setSubmit] = useState(false);
-  const { toDoList, setToDoList } = useToDoItems(submit);
+  const { toDoList } = useToDoItems(submit);
   
   if (!user) {
     return <Redirect to='/auth/sign-up' />;
