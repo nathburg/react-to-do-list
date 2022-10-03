@@ -23,6 +23,15 @@ export async function getToDoItems() {
 
 export async function deleteToDoItem(id) {
   const resp = await client.from('to-do').delete().match({ 'id': id });
-  return resp;
+  return checkError(resp);
 }
 
+export async function updateItemComplete(id) {
+  const resp = await client.from('to-do').update({ 'complete': true }).match({ id });
+  return checkError(resp);
+}
+
+export async function checkCompleteStatus(id) {
+  const resp = await client.from('to-do').select('complete').match({ id }).single();
+  return checkError(resp);
+}
