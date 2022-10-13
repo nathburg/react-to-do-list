@@ -1,0 +1,22 @@
+.input-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.input-container button {
+  width: fit-content;
+}
+
+a {
+  color:grey;
+  text-decoration: none;
+  margin: 5px;
+}
+
+.active {
+  color: green;
+  text-decoration: underline;
+
+}
