@@ -15,7 +15,7 @@ export function useCheckComplete(id) {
       }
     }
     fetchData();
-  }, [id]);
+  }, []);
 
   return { completeStatus, error, setCompleteStatus };
 }

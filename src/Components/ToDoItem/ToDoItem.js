@@ -1,13 +1,16 @@
 import './ToDoItem.css';
-import { checkCompleteStatus, deleteToDoItem, updateItemComplete } from '../../services/client';
+import { checkCompleteStatus, deleteToDoItem, getToDoItems, updateItemComplete } from '../../services/client';
 import { useState } from 'react';
 import { useCheckComplete } from '../../hooks/useCheckComplete';
+import { useToDoItems } from '../../hooks/useToDoList';
 
-export default function ToDoItem({ description, id, setSubmit, submit }) {
-  
+export default function ToDoItem({ description, id, complete }) {
+  console.log(complete);
   const [taskComplete, setTaskComplete] = useState(false);
-  const { completeStatus } = useCheckComplete(id);
-  setTaskComplete(completeStatus);
+  const { setToDoList } = useToDoItems();
+
+  // const { completeStatus } = useCheckComplete(id);
+  // setTaskComplete(completeStatus);
   return (
     <div className='to-do-item'>
       <div>{description}</div>
@@ -16,9 +19,9 @@ export default function ToDoItem({ description, id, setSubmit, submit }) {
         await updateItemComplete(id);
         const resp = await checkCompleteStatus(id);
         console.log(resp.complete);
-        if (resp.complete) {
-          setTaskComplete(true);
-        }  
+        // if (resp.complete) {
+        //   setTaskComplete(true);
+        // }  
       }}>⬜
       </div>} 
       {taskComplete &&
@@ -26,7 +29,8 @@ export default function ToDoItem({ description, id, setSubmit, submit }) {
       </div>}
       <div className='delete' onClick={async () => {
         await deleteToDoItem(id);
-        setSubmit(!submit);
+        const newList = await getToDoItems();
+        setToDoList(newList);
       }}>❌
       </div>
     </div>  

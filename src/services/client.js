@@ -12,7 +12,7 @@ export function checkError({ data, error }) {
 }
 
 export async function insertToDoItem(description) {
-  const resp = await client.from('to-do').insert([{ 'description': description }]);
+  const resp = await client.from('to-do').insert([{ 'description': description }]).single();
   return checkError(resp);
 }
 

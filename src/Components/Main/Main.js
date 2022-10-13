@@ -9,8 +9,8 @@ import { useToDoItems } from '../../hooks/useToDoList';
 export default function Main() {
   const { user } = useContext(UserContext);
   const [toDoItem, setToDoItem] = useState('');
-  const [submit, setSubmit] = useState(false);
-  const { toDoList } = useToDoItems(submit);
+  // const [submit, setSubmit] = useState(false);
+  const { toDoList, setToDoList } = useToDoItems();
   
   if (!user) {
     return <Redirect to='/auth/sign-up' />;
@@ -21,12 +21,13 @@ export default function Main() {
         <input value={toDoItem} onChange={e => setToDoItem(e.target.value)}></input>
       </label>
       <button onClick={async () => {
-        await insertToDoItem(toDoItem);
+        const newItem = await insertToDoItem(toDoItem);
         setToDoItem('');
-        setSubmit(!submit);
+        setToDoList((prevState) => [...prevState, newItem]);
+        // setSubmit(!submit);
       }}>Enter</button>
       {toDoList.map((item) =>
-        <ToDoItem key={item.id} {...item} submit={submit} setSubmit={setSubmit} />
+        <ToDoItem key={item.id} {...item} />
       )}
     </div>
   );

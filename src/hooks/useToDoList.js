@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { getToDoItems } from '../services/client';
 
-export function useToDoItems(submit) {
+export function useToDoItems() {
   const [toDoList, setToDoList] = useState([]);
   const [error, setError] = useState('');
 
@@ -15,7 +15,7 @@ export function useToDoItems(submit) {
       }
     }
     fetchData();
-  }, [submit]);
+  }, []);
 
   return { toDoList, error, setToDoList };
 }
